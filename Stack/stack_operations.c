@@ -59,7 +59,17 @@ int peek(struct stack*sp, int i){
         return sp->arr[sp->top-i+1];
     }
 }
+
+// Function for getting the top most element of the stack
+int stackTop(struct stack*sp){
+    return sp->arr[sp->top];
+}
  
+// Function for getting the bottom most element of the stack 
+int stackBottom(struct stack*sp){
+    return sp->arr[0];
+}
+
 int main(){
     struct stack *sp = (struct stack *) malloc(sizeof(struct stack));
     sp->size = 5;
@@ -84,5 +94,7 @@ int main(){
     {
         printf("The value at position %d is %d\n", j, peek(sp, j));
     }  
+    printf("The top most element of the stack is %d\n", stackTop(sp));
+    printf("The bottom most element of the stack is %d\n", stackBottom(sp));
     return 0;
 }

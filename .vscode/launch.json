@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Data-Structures",
-      "program": "d:/Data-Structures/build/Debug/outDebug",
+      "cwd": "d:/Data-Structures/Sorting",
+      "program": "d:/Data-Structures/Sorting/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
