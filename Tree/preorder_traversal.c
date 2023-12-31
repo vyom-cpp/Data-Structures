@@ -32,13 +32,14 @@ int main(){
     struct node *p2 = createNode(6);
     struct node *p3 = createNode(5);
     struct node *p4 = createNode(2);
+    /*
     // Finally The tree looks like this:
     //      4
     //     / \
     //    1   6
     //   / \
     //  5   2  
-
+    */
     // Linking the root node with left and right children
     p->left = p1;
     p->right = p2;
