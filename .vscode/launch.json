@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "d:/Data-Structures/Tree",
-      "program": "d:/Data-Structures/Tree/build/Debug/outDebug",
+      "cwd": "d:/Data-Structures/PYQS-Programs",
+      "program": "d:/Data-Structures/PYQS-Programs/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
