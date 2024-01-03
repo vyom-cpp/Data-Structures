@@ -301,33 +301,188 @@ Input: Sorted array A of size n, Search element X
 ```
 ### Algorithm to insert in doubly linked list
 ```c
-
+1. [Obtain new node from availability stack]
+    NEW<--NODE
+2. [Copy information field]
+    INFO(NEW)<--X
+3. [Insertion into an empty list?]
+    if R=NULL
+    then LPTR(NEW)<--RPTR(NEW)<--NULL
+        L<--R<--NEW
+        Return
+4. [Left-most insertion?]
+    if M=L
+    then LPTR(NEW)<--NULL
+        RPTR(NEW)<--M
+        LPTR(M)<--NEW
+        L<--NEW
+        Return
+5. [Insert in middle]
+    LPTR(NEW)<--LPTR(M)
+    RPTR(NEW)<--M
+    LPTR(NEW)<--NEW
+    RPTR(LPTR(NEW))<--NEW
+    Return
+// L & R are the addresses of left-most and right-most node
+// NEW is the address of the new node
+// LPTR & RPTR are the left and right links of a node
+// INFO stores the information field of the node
+// NODE is the name of an element of the list
+// Insertion is to be performed to the left of a specified node with its address given by the pointer variable M
+// The information to be entered in the node is contained in X
 ```
 ### Algorithm to delete from doubly linked list
 ```c
-
+1. [Underflow?]
+    if R=NULL
+    then write('Underflow')
+    Return
+2. [Delete node]
+    if L=R // Single node in the list
+    then L<--R<--NULL
+    else if OLD=L // left-most node being deleted
+        then L<--RPTR(L)
+            LPTR(L)<--NULL
+        else if OLD=R // right-most node being deleted
+            then R<--LPTR(R)
+                RPTR(R)<--NULL
+            else RPTR(LPTR(OLD))<--RPTR(OLD)
+                LPTR(RPTR(OLD))<--LPTR(OLD)
+3. [Return deleted node]
+    Restore(OLD)
+    Return
+// OLD contains the address of the node that is to be deleted
 ```
 ### Algorithm to display elements of circular queue
 ```c
-
+1. [Check Empty Queue]
+   if (Front == -1)
+      Display "Circular Queue is Empty"
+      Return
+2. [Initialize Pointers]
+   DisplayPointer = Front
+3. [Display Elements]
+   repeat
+      Display Element at Queue[DisplayPointer]
+      DisplayPointer = (DisplayPointer + 1) mod N
+   until DisplayPointer is equal to (Rear + 1) mod N
+4. Display a newline character
+// Front & Rear are the front and rear pointers
+// N is the maximum size of the queue
 ```
-### Algorithm to find length of singly liked list
+### Algorithm to find length of singly linked list
 ```c
-
+1. [Check Empty List]
+   if (Head is NULL)
+      return 0 (List is empty)
+2. [Initialize Count]
+   Count = 0
+3. [Traverse List]
+   Set Current to Head
+   repeat
+      Count = Count + 1
+      Current = Current->next
+   until Current is NULL
+4. return Count
 ```
 ### Algorithm to delete a node in a binary search tree
 ```c
-
+void del(node *root, int key)
+{
+    node *temp, *parent, *temp_succ;
+    temp = search(root, key, & parent);
+    // This algorithm is for deleting a node with two children
+    if(temp->left!=NULL && temp->right!=NULL){
+        parent=temp;
+        temp_succ=temp->right;
+        while(temp_succ->left!=NULL){
+            parent=temp_succ;
+            temp_succ=temp_succ->left;  // Moving to left most subtree
+        }
+        temp->data=temp_succ->data  // Copying the successor node's data to temp node
+        parent->right=NULL;
+        printf("Deleted");
+        return;
+    }
+}
 ```
 ### Algorithm to insert a node at a specific position in a singly linked list
 ```c
-
+1. [Check Empty List]
+   a. if (Head is NULL)
+      i. Display "List is empty."
+      ii. return
+2. [Initialize Variables]
+   a. Create a new node with the given data.
+   b. Set Count to 1.
+   c. Set Current to Head.
+3. [Insert at Position]
+   a. Prompt for the position to insert.
+   b. repeat
+      i. if (Count is equal to the desired position - 1)
+         - Set the new node's next to Current's next.
+         - Set Current's next to the new node.
+      ii. Increment Count.
+      iii. Set Current to Current's next.
+   c. until Count is equal to the desired position - 1 or Current is NULL.
+4. [Invalid Position]
+   a. if (Count is not equal to the desired position - 1)
+      i. Display "Invalid position."
+      ii. return
+5. return
 ```
 ### Recursive function to compute factorial using stack
 ```c
-
+int factorial(int n) {
+    // Base case: factorial of 0 is 1
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    // Create a stack to store intermediate results
+    std::stack<int> s;
+    // Push initial value onto the stack
+    s.push(n);
+    // Recursive computation using a stack
+    while (n > 1) {
+        n--;
+        s.push(n);
+    }
+    int result = 1;
+    // Pop values from the stack and multiply to get the result
+    while (!s.empty()) {
+        result *= s.top();
+        s.pop();
+    }
+    return result;
+}
 ```
 ### Algorithm for iterative pre-order traversal in a binary search tree
 ```c
-
+void iterativePreOrder(struct node* root) {
+    if (root == NULL) {
+        printf("Tree is empty.\n");
+        return;
+    }
+    while (root != NULL) {
+        // Visit the current node and print its data
+        printf("%d ", root->data);
+        // Move to the left child if it exists
+        if (root->left != NULL) {
+            root = root->left;
+        }
+        // If no left child, move to the right child if it exists
+        else if (root->right != NULL) {
+            root = root->right;
+        }
+        // If no left or right child, move back to the parent's right child
+        else {
+            // Move up the tree until a parent's right child is found
+            while (root->parent != NULL && (root == root->parent->right || root->parent->right == NULL)) {
+                root = root->parent;
+            }
+            // Move to the right child of the parent (or set to NULL if no parent)
+            root = (root->parent == NULL) ? NULL : root->parent->right;
+        }
+    }
+}
 ```
